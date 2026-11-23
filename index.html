@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Il sito della Contrada Viarella del Palio di Bientina: i pali vinti, l'archivio fotografico e le cene di contrada.">
+<meta property="og:title" content="Contrada Viarella · Palio di Bientina">
+<title>Contrada Viarella</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: orgoglio di contrada, festoso ma ordinato, come il bando del palio appeso in piazza.
+   IDEA: il drappellone (cencio) giallonero e la bacheca della sede con le foto per anno.
+   PICTURE: un drappellone a strisce gialle e nere che pende da un'asta, con le 5 stelle delle vittorie.
+   COLOUR and TYPE: nero pieno, giallo Viarella #f6c400, bianco caldo; Alfa Slab One + Archivo.
+   LAYOUT: hero nero a tutta larghezza, fascia gialla dei pali, archivio a griglia, cene come calendario. */
+:root{color-scheme:light dark;--y:#f6c400;--k:#111;--bg:light-dark(#fffdf4,#0c0c0b);--ink:light-dark(#141414,#f3f0e6);--mut:light-dark(#5b5649,#a9a493);--card:light-dark(#fff,#1a1918);--line:light-dark(#e7e1cc,#2c2a26)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Archivo,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,4.5vw,46px)}
+.band{padding:clamp(32px,5vw,72px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+nav{position:sticky;top:0;z-index:20;background:var(--k);color:#fff;border-bottom:4px solid var(--y)}
+nav .wrap{display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap;padding:10px max(5vw,16px)}
+nav b{font-family:"Alfa Slab One",serif;font-weight:400;font-size:20px;color:var(--y);margin-right:auto}
+nav a{text-decoration:none;padding:10px 4px;font-weight:500}
+nav a:hover{color:var(--y)}
+.hero{background:var(--k);color:#fff}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:center}
+.hero h1{font-size:clamp(46px,8vw,96px);color:var(--y)}
+.hero p{font-size:18px;max-width:34em;color:#e9e6dc}
+.kick{font-weight:700;font-size:15px;color:#fff;opacity:.85;margin-bottom:12px}
+.stat{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap}
+.stat div{border-left:4px solid var(--y);padding-left:12px}
+.stat strong{display:block;font-family:"Alfa Slab One",serif;font-weight:400;font-size:40px;color:var(--y);line-height:1}
+.flag{width:100%;max-width:420px;justify-self:center}
+.flag .sw{transform-origin:50% 0;animation:sw 6s ease-in-out infinite}
+@keyframes sw{50%{transform:skewX(-2deg)}}
+@media(prefers-reduced-motion:reduce){.flag .sw{animation:none}}
+.pali{background:var(--y);color:var(--k)}
+.pali .lead{max-width:40em;margin:12px 0 28px;font-size:17px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.palio{background:var(--k);color:#fff;border:0;border-radius:6px;overflow:hidden;text-align:left;padding:0;display:flex;flex-direction:column;box-shadow:0 10px 24px -14px #0008}
+.palio .ph{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#1d1d1d 0 18px,#262626 18px 36px);display:grid;place-items:center;color:var(--y);font-family:"Alfa Slab One",serif;font-size:64px}
+.palio .ph img{width:100%;height:100%;object-fit:cover}
+.palio .tx{padding:12px 14px 16px}
+.palio .yr{font-family:"Alfa Slab One",serif;font-size:30px;color:var(--y);line-height:1}
+.palio small{display:block;color:#cfcabc;margin-top:4px;font-size:14px}
+.palio.vuoto{opacity:.55;cursor:default}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;margin:18px 0 10px}
+.chip{flex:none;min-height:44px;padding:0 18px;border-radius:99px;border:2px solid var(--ink);background:transparent;color:var(--ink);font-weight:700}
+.chip[aria-pressed=true]{background:var(--k);border-color:var(--k);color:var(--y)}
+:root[data-theme=dark] .chip[aria-pressed=true],.chip[aria-pressed=true]{outline:0}
+.ygroup h3{font-size:28px;margin:26px 0 12px;display:flex;align-items:baseline;gap:12px}
+.ygroup h3 span{font:500 15px Archivo,sans-serif;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.ft{position:relative;padding:0;border:0;background:var(--line);aspect-ratio:1;border-radius:4px;overflow:hidden}
+.ft img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.ft:hover img{transform:scale(1.04)}
+.ft .star{position:absolute;top:6px;left:6px;background:var(--y);color:var(--k);font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px}
+.ft .del,.cena .del,.palio-del{position:absolute;top:6px;right:6px;background:#000c;color:#fff;border:0;border-radius:99px;width:34px;height:34px;font-size:18px;line-height:1}
+.empty{border:2px dashed var(--line);border-radius:8px;padding:28px;color:var(--mut);text-align:center}
+.cene{background:var(--card);border-top:1px solid var(--line)}
+.clist{display:grid;gap:14px;margin-top:22px}
+.cena{position:relative;display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:16px}
+.cal{background:var(--k);color:var(--y);border-radius:6px;text-align:center;padding:10px 4px;align-self:start}
+.cal b{display:block;font-family:"Alfa Slab One",serif;font-weight:400;font-size:38px;line-height:1}
+.cal span{font-weight:700;font-size:14px;color:#fff}
+.cena h3{font-size:24px;margin-bottom:6px}
+.meta{color:var(--mut);font-size:15px;display:flex;flex-wrap:wrap;gap:4px 16px}
+.meta span{white-space:nowrap}
+.menu{white-space:pre-line;margin:10px 0 0}
+.passate{margin-top:30px}
+.passate summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+footer{background:var(--k);color:#cfcabc;text-align:center;font-size:14px}
+footer b{color:var(--y)}
+.fab{position:fixed;right:16px;bottom:16px;z-index:30;background:var(--y);color:var(--k);border:3px solid var(--k);border-radius:99px;padding:0 20px;min-height:52px;font-weight:700;box-shadow:0 8px 20px -8px #000a}
+.ov{position:fixed;inset:0;z-index:40;background:#000d;display:none;align-items:center;justify-content:center;padding:16px}
+.ov.on{display:flex}
+.panel{background:var(--bg);color:var(--ink);border-radius:10px;width:min(560px,100%);max-height:92vh;overflow:auto;padding:20px}
+.tabs{display:flex;gap:6px;margin:14px 0 18px;flex-wrap:wrap}
+.panel label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.panel input,.panel textarea,.panel select{width:100%;font-size:16px;padding:10px 12px;border:1.5px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);min-height:44px}
+.panel .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.chk{display:flex!important;align-items:center;gap:10px}.chk input{width:22px;min-height:22px}
+.btn{min-height:44px;padding:0 20px;border-radius:6px;border:0;background:var(--k);color:var(--y);font-weight:700;margin-top:16px}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.msg{margin-top:10px;font-weight:500;min-height:1.5em}
+.lb img{max-width:100%;max-height:78vh;display:block;margin:0 auto;border-radius:4px}
+.lb figure{margin:0;max-width:1100px;width:100%;color:#fff;text-align:center}
+.lb figcaption{margin-top:10px}
+.lbn{position:fixed;top:50%;transform:translateY(-50%);background:#000a;color:#fff;border:0;width:48px;height:64px;font-size:28px;border-radius:6px}
+.lbx{position:fixed;top:12px;right:12px;background:#000a;color:#fff;border:0;width:48px;height:48px;font-size:26px;border-radius:99px}
+.note{background:var(--y);color:var(--k);text-align:center;padding:10px 16px;font-weight:500}
+@media(max-width:700px){.hero .wrap{grid-template-columns:1fr}.flag{max-width:260px;order:-1}.cena{grid-template-columns:72px minmax(0,1fr)}.cal b{font-size:30px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.panel .row{grid-template-columns:1fr}.pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.palio .ph{font-size:40px}.palio .yr{font-size:24px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Viarella</b><a href="#pali">I pali</a><a href="#foto">Foto</a><a href="#cene">Cene</a></div></nav>
+<div class="note" id="note" hidden></div>
+
+<header class="hero band"><div class="wrap">
+  <div>
+    <div class="kick">Palio di San Valentino · Bientina</div>
+    <h1>Contrada Viarella</h1>
+    <p>Il popolo giallonero: le nostre corse, le feste, le cene e tutti i ricordi della contrada, anno dopo anno.</p>
+    <div class="stat">
+      <div><strong>5</strong>pali vinti</div>
+      <div><strong id="nFoto">0</strong>foto in archivio</div>
+      <div><strong id="nAnni">0</strong>anni raccontati</div>
+    </div>
+  </div>
+  <svg class="flag" viewBox="0 0 300 400" role="img" aria-label="Drappellone giallonero con cinque stelle">
+    <defs>
+      <pattern id="st" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="30" height="60" fill="#f6c400"/><rect x="30" width="30" height="60" fill="#151515"/></pattern>
+      <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".35" stop-color="#fff" stop-opacity=".12"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".4"/></linearGradient>
+      <path id="star" d="M0-14 4-4 15-4 6 3 9 14 0 7-9 14-6 3-15-4-4-4Z"/>
+    </defs>
+    <rect x="20" y="22" width="260" height="10" rx="5" fill="#d9d4c3"/>
+    <circle cx="20" cy="27" r="11" fill="#f6c400"/><circle cx="280" cy="27" r="11" fill="#f6c400"/>
+    <g class="sw">
+      <path d="M40 32H260V330L150 385 40 330Z" fill="url(#st)" stroke="#f6c400" stroke-width="4"/>
+      <path d="M40 32H260V330L150 385 40 330Z" fill="url(#sh)"/>
+      <rect x="70" y="62" width="160" height="120" rx="8" fill="#111" stroke="#f6c400" stroke-width="3"/>
+      <text x="150" y="122" text-anchor="middle" font-family="Alfa Slab One,serif" font-size="34" fill="#f6c400">VIARELLA</text>
+      <text x="150" y="156" text-anchor="middle" font-family="Archivo,sans-serif" font-size="15" fill="#fff" letter-spacing="1">Bientina</text>
+      <g fill="#fff" stroke="#111" stroke-width="2">
+        <use href="#star" x="86" y="232"/><use href="#star" x="118" y="214"/><use href="#star" x="150" y="206"/><use href="#star" x="182" y="214"/><use href="#star" x="214" y="232"/>
+      </g>
+      <path d="M150 385v14" stroke="#f6c400" stroke-width="3"/><circle cx="150" cy="399" r="0"/>
+    </g>
+  </svg>
+</div></header>
+
+<section id="pali" class="pali band"><div class="wrap">
+  <h2>I nostri 5 pali</h2>
+  <p class="lead">Le vittorie della Viarella in piazza a Bientina. Tocca una vittoria per vedere le sue foto.</p>
+  <div class="pgrid" id="pgrid"></div>
+</div></section>
+
+<section id="foto" class="band"><div class="wrap">
+  <h2>Archivio fotografico</h2>
+  <div class="chips" id="chips" role="toolbar" aria-label="Filtra per anno"></div>
+  <div id="archivio"><div class="empty">Caricamento delle foto…</div></div>
+</div></section>
+
+<section id="cene" class="cene band"><div class="wrap">
+  <h2>Le cene di contrada</h2>
+  <div class="clist" id="prossime"><div class="empty">Caricamento delle cene…</div></div>
+  <details class="passate" id="passateBox" hidden><summary>Cene passate</summary><div class="clist" id="passate"></div></details>
+</div></section>
+
+<footer class="band"><b>Contrada Viarella</b> · Palio di San Valentino, Bientina<br>© <span id="yy"></span> Contrada Viarella</footer>
+
+<div class="ov lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto">
+  <button class="lbx" id="lbX" aria-label="Chiudi">×</button>
+  <button class="lbn" id="lbP" style="left:8px" aria-label="Precedente">‹</button>
+  <figure><img id="lbI" alt=""><figcaption id="lbC"></figcaption></figure>
+  <button class="lbn" id="lbN" style="right:8px" aria-label="Successiva">›</button>
+</div>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const url=p=>encodeURI(String(p||'').replace(/^\/+/,''));
+const MESI=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+let pali=[],album=[],cene=[],filtro='tutti',lbList=[],lbI=0;
+$('#yy').textContent=new Date().getFullYear();
+const note=t=>{const n=$('#note');n.textContent=t;n.hidden=!t};
+const load=f=>fetch('dati/'+f+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw r.status;return r.json()});
+const lista=v=>(Array.isArray(v)?v:[]).filter(Boolean);
+
+function tuttePhoto(){
+  const out=[];
+  for(const a of album)for(const f of lista(a.foto))out.push({src:f,anno:+a.anno,cap:a.descrizione||'',palio:false});
+  for(const p of pali)for(const f of lista(p.foto))out.push({src:f,anno:+p.anno,cap:'Palio vinto '+p.anno,palio:true});
+  return out;
+}
+
+function renderPali(){
+  const ps=[...pali].sort((a,b)=>a.anno-b.anno);
+  let h=ps.map(p=>{
+    const fs=lista(p.foto);
+    const sub=[p.fantino&&'Fantino: '+p.fantino,p.cavallo&&'Cavallo: '+p.cavallo].filter(Boolean).map(esc).join('<br>');
+    return `<button class="palio" data-pa="${esc(p.anno)}">
+      <div class="ph">${fs.length?`<img src="${url(fs[0])}" alt="Palio ${esc(p.anno)}" loading="lazy">`:'★'}</div>
+      <div class="tx"><div class="yr">${esc(p.anno)}</div><small>${sub||'Palio vinto'}</small>${p.ricordo?`<small>${esc(p.ricordo)}</small>`:''}${fs.length?`<small>${fs.length} foto</small>`:''}</div></button>`}).join('');
+  for(let i=ps.length;i<5;i++)h+=`<div class="palio vuoto"><div class="ph">${i+1}</div><div class="tx"><div class="yr">Anno</div><small>Vittoria da inserire</small></div></div>`;
+  $('#pgrid').innerHTML=h;
+}
+
+function renderFoto(){
+  const all=tuttePhoto();
+  const anni=[...new Set(all.map(f=>f.anno))].filter(a=>!isNaN(a)).sort((a,b)=>b-a);
+  $('#nFoto').textContent=all.length;$('#nAnni').textContent=anni.length;
+  if(filtro!=='tutti'&&filtro!=='pali'&&!anni.includes(+filtro))filtro='tutti';
+  const opts=[['tutti','Tutti gli anni'],['pali','Solo pali vinti'],...anni.map(a=>[String(a),a])];
+  $('#chips').innerHTML=opts.map(([v,l])=>`<button class="chip" data-y="${v}" aria-pressed="${filtro==v}">${l}</button>`).join('');
+  if(!all.length){$('#archivio').innerHTML='<div class="empty">Ancora nessuna foto in archivio.</div>';return}
+  const show=anni.filter(a=>filtro==='tutti'||filtro==='pali'||a==filtro);
+  let idx=0;window.__vis=[];
+  $('#archivio').innerHTML=show.map(a=>{
+    const fs=all.filter(f=>f.anno===a&&(filtro!=='pali'||f.palio));
+    if(!fs.length)return'';
+    const desc=(album.find(x=>+x.anno===a)||{}).descrizione;
+    return `<div class="ygroup"><h3>${a}<span>${fs.length} foto${desc?' · '+esc(desc):''}</span></h3><div class="grid">${fs.map(f=>{window.__vis.push(f);
+      return `<button class="ft" data-i="${idx++}" aria-label="Apri foto ${a}"><img src="${url(f.src)}" alt="" loading="lazy" decoding="async">${f.palio?'<span class="star">Palio</span>':''}</button>`}).join('')}</div></div>`}).join('')||'<div class="empty">Nessuna foto per questo filtro.</div>';
+}
+
+function cenaHtml(c){
+  const d=new Date(String(c.data).slice(0,10)+'T12:00');
+  const ok=!isNaN(d);
+  const meta=[c.ora&&'Ore '+c.ora,c.luogo,c.prezzo].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
+  return `<article class="cena"><div class="cal"><b>${ok?d.getDate():'?'}</b><span>${ok?MESI[d.getMonth()]+' '+d.getFullYear():''}</span></div>
+   <div><h3>${esc(c.titolo)}</h3><div class="meta">${meta}</div>${c.menu?`<p class="menu">${esc(c.menu)}</p>`:''}${c.info?`<p class="meta" style="margin-top:8px">${esc(c.info)}</p>`:''}</div></article>`;
+}
+function renderCene(){
+  const oggi=new Date().toISOString().slice(0,10);
+  const k=c=>String(c.data||'').slice(0,10);
+  const pr=cene.filter(c=>k(c)>=oggi).sort((a,b)=>k(a).localeCompare(k(b)));
+  const pa=cene.filter(c=>k(c)<oggi).sort((a,b)=>k(b).localeCompare(k(a)));
+  $('#prossime').innerHTML=pr.length?pr.map(cenaHtml).join(''):'<div class="empty">Nessuna cena in programma al momento. Restate sintonizzati!</div>';
+  $('#passateBox').hidden=!pa.length;$('#passate').innerHTML=pa.map(cenaHtml).join('');
+}
+
+function openLb(list,i){lbList=list;lbI=i;showLb();$('#lb').classList.add('on')}
+function showLb(){const f=lbList[lbI];if(!f)return;$('#lbI').src=url(f.src);$('#lbC').textContent=[f.anno,f.cap].filter(Boolean).join(' · ');$('#lbP').hidden=$('#lbN').hidden=lbList.length<2}
+const step=d=>{lbI=(lbI+d+lbList.length)%lbList.length;showLb()};
+$('#lbP').onclick=()=>step(-1);$('#lbN').onclick=()=>step(1);
+$('#lbX').onclick=()=>$('#lb').classList.remove('on');
+$('#lb').addEventListener('click',e=>{if(e.target.id==='lb')$('#lbX').click()});
+document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('on'))return;if(e.key==='Escape')$('#lbX').click();if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
+let tx=0;$('#lb').addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+$('#lb').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)step(d<0?1:-1)});
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.y){filtro=t.dataset.y;renderFoto()}
+  else if(t.dataset.i){openLb(window.__vis,+t.dataset.i)}
+  else if(t.dataset.pa){const p=pali.find(x=>String(x.anno)===t.dataset.pa);const l=lista(p&&p.foto).map(s=>({src:s,anno:p.anno,cap:'Palio vinto '+p.anno}));
+    if(l.length)openLb(l,0)}
+});
+
+renderPali();
+Promise.allSettled([load('pali'),load('album'),load('cene')]).then(([p,a,c])=>{
+  pali=p.value?lista(p.value.pali):[];album=a.value?lista(a.value.album):[];cene=c.value?lista(c.value.cene):[];
+  if([p,a,c].some(r=>r.status==='rejected'))note(location.protocol==='file:'?'Per vedere i contenuti apri il sito dal suo indirizzo web (non come file).':'Alcuni contenuti non sono stati caricati. Riprova tra poco.');
+  renderPali();renderFoto();renderCene();
+});
+}
+</script>
+</body>
+</html>
