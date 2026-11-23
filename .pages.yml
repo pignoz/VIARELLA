@@ -1,0 +1,55 @@
+media:
+  input: foto
+  output: foto
+
+content:
+  - name: pali
+    label: I pali vinti
+    type: file
+    path: dati/pali.json
+    format: json
+    fields:
+      - name: pali
+        label: Vittorie
+        type: object
+        list: true
+        fields:
+          - { name: anno, label: Anno, type: number, required: true }
+          - { name: fantino, label: Fantino, type: string }
+          - { name: cavallo, label: Cavallo, type: string }
+          - { name: ricordo, label: Ricordo (facoltativo), type: string }
+          - { name: foto, label: Foto del palio, type: image, list: true }
+
+  - name: album
+    label: Archivio foto per anno
+    type: file
+    path: dati/album.json
+    format: json
+    fields:
+      - name: album
+        label: Anni
+        type: object
+        list: true
+        fields:
+          - { name: anno, label: Anno, type: number, required: true }
+          - { name: descrizione, label: Descrizione (facoltativa), type: string }
+          - { name: foto, label: Foto, type: image, list: true }
+
+  - name: cene
+    label: Cene di contrada
+    type: file
+    path: dati/cene.json
+    format: json
+    fields:
+      - name: cene
+        label: Cene
+        type: object
+        list: true
+        fields:
+          - { name: titolo, label: Titolo, type: string, required: true }
+          - { name: data, label: Data, type: date, required: true }
+          - { name: ora, label: Ora (es. 20:30), type: string }
+          - { name: luogo, label: Luogo, type: string }
+          - { name: prezzo, label: Prezzo, type: string }
+          - { name: menu, label: Menù, type: text }
+          - { name: info, label: Prenotazioni / info, type: string }
